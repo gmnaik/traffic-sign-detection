@@ -1,0 +1,10 @@
+pandas
+numpy
+opencv-python
+scikit-learn
+pyyaml
+torch
+ultralytics
+torch-directml
+label-studio
+-e .
