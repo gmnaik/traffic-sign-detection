@@ -1,10 +1,12 @@
 import torch
+import torch_directml
 import time
 
-cpu = torch.device("cpu")
+device = torch_directml.device()
+print(f"Using Device: {device}")
 
 # Create large tensors
-x_cpu = torch.randn(10000, 10000).to(cpu)
+x_cpu = torch.randn(10000, 10000).to(device)
 
 # Perform matrix multiplication on CPU
 start_time = time.time()

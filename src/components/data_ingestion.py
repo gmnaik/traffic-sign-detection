@@ -18,6 +18,9 @@ from src.components.data_transformation import DataTransformationConfig
 from src.components.model_trainer import ModelTrainer
 from src.components.model_trainer import ModelTrainerConfig
 ''' 
+
+from src.components.model_trainer import ModelTrainer
+from src.components.model_trainer import ModelTrainerConfig
 @dataclass
 class DataIngestionConfig:
     root_dir = "artifacts/data/"
@@ -117,7 +120,7 @@ class DataIngestion:
             
             logging.info("Copying of Images and labels for training,validation and testing is completed")
             
-            return "data_ingestion completed"
+            return "data ingestion completed"
         
         except Exception as e:
             raise CustomException(e,sys)
@@ -126,8 +129,14 @@ class DataIngestion:
 if __name__ == "__main__":
     logging.info("Data Ingestion started")
     obj=DataIngestion()
-    return_str = obj.initiate_data_ingestion()
+    ingestion_str = obj.initiate_data_ingestion()
     logging.info("Data Ingestion Completed")
+    
+    if ingestion_str == "data ingestion completed":
+        modeltrainer = ModelTrainer()
+        trainer_str = modeltrainer.initiate_model_trainer()
+        
+        
     ''' 
     data_transformation = DataTransformation()
     train_arr,test_arr,_ = data_transformation.initiate_data_transformation(train_data,test_data)
@@ -135,7 +144,7 @@ if __name__ == "__main__":
     modeltrainer = ModelTrainer()
     accuracy_test_data = modeltrainer.initiate_model_trainer(train_arr,test_arr)
     '''
-    print("return_str:",return_str)
+    print("trainer_str:",trainer_str)
     
     
      
